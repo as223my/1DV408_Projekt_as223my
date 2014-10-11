@@ -1,7 +1,7 @@
 <?php
 namespace controller;
 
-require_once("./src/controller/c_userController.php");
+require_once("./src/controller/c_login.php");
 require_once("./src/view/v_navigation.php");
 
 class Navigation{
@@ -12,13 +12,12 @@ class Navigation{
 		try {
 			switch (\view\NavigationView::getAction()){
 				case \view\NavigationView::$actionLoggedIn:
-					$controller = new UserController();
-					return $controller->addMember();
+					return "Du är inloggad!!";
 					break;
 					
 				default:
-					$controller = new UserController();
-					return $controller->showLoginForm();
+					$controller = new Login();
+					return $controller->LoginForm();
 					break;
 			}
 

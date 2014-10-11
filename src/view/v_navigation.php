@@ -6,7 +6,7 @@ require_once("./Settings.php");
 class NavigationView{
 	public static $action = "action";
 	
-	public static $actionLoggIn = "loggin";
+	public static $actionLogin = "login";
 	public static $actionLoggedIn = "loggedin";
 	
 	public static function getAction(){
@@ -14,7 +14,7 @@ class NavigationView{
 			return $_GET[self::$action];
 			
 		}else{
-			return self::$actionLoggIn;
+			return self::$actionLogin;
 		}
 	}
 	
