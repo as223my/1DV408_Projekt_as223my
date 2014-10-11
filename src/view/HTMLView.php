@@ -13,6 +13,9 @@ class HTMLView{
 			<html>
 				<head>
 					<title>FamilyBook</title>
+					<link rel='stylesheet' type='text/css' href='css/style.css'>
+					<link href='http://fonts.googleapis.com/css?family=Lora:700' rel='stylesheet' type='text/css'>
+					<link href='http://fonts.googleapis.com/css?family=Dancing+Script:700' rel='stylesheet' type='text/css'>
 					<meta charset=utf-8>
 				</head>
 				<body>

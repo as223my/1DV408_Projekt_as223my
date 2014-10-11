@@ -7,28 +7,44 @@ class LoginView{
 	
 	private $sessionHelper;
 	
-	private static $name = 'name';
+	private static $group = 'group';
+	private static $username = 'username';
+	private static $password = 'password';
+	private static $checkbox = 'checkbox'; 
 	
 	public function __construct(){
 		$this->sessionHelper = new \helpers\Session();
 		
 	}
+	
+	public function didUserPressLogin(){
+		if(isset($_POST["login"])){
+			return array($_POST[self::$group], $_POST[self::$username], $_POST[self::$password], $_POST[self::$checkbox]);
+		}else{
+			return null;
+		}	
+	}
 	public function showLoginForm(){
 		
 		$message = $this->sessionHelper->getMessage();
 		
-		$html = "<div id='LoginForm'>
-		 <h1>Lägg till medlem</h1>
-		 <form method='post' action='?action=".NavigationView::$actionUserPage."'>
-		 <label for='" . self::$name . "'>Förnamn: </label>
-		 <input type='text' name='" . self::$name . "' placeholder='Förnamn' maxlength='30' value=''><br />
-		 <label for='" . self::$name . "'>Efternamn: </label>
-		 <input type='text' name='" . self::$name . "' placeholder='Efternamn' maxlength='60' value=''><br />	
-		 <label for='" . self::$name . "'>Personnummer : </label>
-		 <input type='text' name='" . self::$name . "' placeholder='xxxxxxxxxx' maxlength='10' value=''><br /><br />
-		 <input type='submit' value='Lägg till Medlem' />
-		 </form>
-		 <p>$message</p>
+		$html = "
+		<div id='LoginForm'>
+			 <h1>FamilyBook</h1>
+			 <h2>Login</h2>
+			 <form method='post' action='?action=" .NavigationView::$actionLogin. "'>
+				 <label for='" .self::$group. "'>Grupp</label><br />
+				 <input type='text' name='" .self::$group. "' maxlength='50' value=''><br />
+				 <label for='" .self::$username. "'>Användarnamn</label><br />
+				 <input type='text' name='" .self::$username. "'  maxlength='50' value=''><br />
+				 <label for='" . self::$password . "'>Lösenord</label><br />
+				 <input type='text' name='" .self::$password. "' maxlength='50' value=''>
+				  <label for='" .self::$checkbox. "'>Håll mig inloggad</label>
+				 <input type='checkbox' name='" .self::$checkbox. "'class = 'checkbox'>	
+				 <p>$message</p>
+				 <input type='submit' name='login'  value='Logga in' class ='submitbutton'/>
+			
+			 </form>
 		 </div>";
 		
 		return $html;

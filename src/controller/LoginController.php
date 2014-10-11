@@ -15,7 +15,15 @@ class LoginController{
 	
 	public function LoginForm(){
 		
-		return $this->loginView->showLoginForm();
+		if($this->loginView->didUserPressLogin()){
+			
+			//Validera input i model
+			//cookies? 
+			//Lägg medelande i sessionhelper
+			
+		}else{
+			return $this->loginView->showLoginForm();
+		}
 	}
 
 }
