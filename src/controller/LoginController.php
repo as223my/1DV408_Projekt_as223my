@@ -2,9 +2,9 @@
 
 namespace controller;
 
-require_once("./src/view/v_loginView.php");
+require_once("./src/view/LoginView.php");
 
-class Login{
+class LoginController{
 	
 	private $loginView;
 	

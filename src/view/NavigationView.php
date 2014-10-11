@@ -7,7 +7,7 @@ class NavigationView{
 	public static $action = "action";
 	
 	public static $actionLogin = "login";
-	public static $actionLoggedIn = "loggedin";
+	public static $actionUserPage = "userPage";
 	
 	public static function getAction(){
 		if (isset($_GET[self::$action])){

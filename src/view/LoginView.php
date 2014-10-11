@@ -1,7 +1,7 @@
 <?php
 namespace view;
 
-require_once("./helpers/m_session.php");
+require_once("./helpers/Session.php");
 
 class LoginView{
 	
@@ -19,7 +19,7 @@ class LoginView{
 		
 		$html = "<div id='LoginForm'>
 		 <h1>Lägg till medlem</h1>
-		 <form method='post' action='?action=".NavigationView::$actionLoggedIn."'>
+		 <form method='post' action='?action=".NavigationView::$actionUserPage."'>
 		 <label for='" . self::$name . "'>Förnamn: </label>
 		 <input type='text' name='" . self::$name . "' placeholder='Förnamn' maxlength='30' value=''><br />
 		 <label for='" . self::$name . "'>Efternamn: </label>

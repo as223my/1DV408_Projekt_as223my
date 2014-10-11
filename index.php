@@ -1,10 +1,10 @@
 <?php
 require_once("src/view/HTMLView.php");
-require_once("src/controller/c_navigation.php");
+require_once("src/controller/NavigationController.php");
 	
 $view = new \view\HTMLView();
 
-$navigation = new \controller\Navigation();
+$navigation = new \controller\NavigationController();
 
 $html = $navigation->doControll();
 

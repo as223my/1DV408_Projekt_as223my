@@ -12,7 +12,7 @@ class HTMLView{
 			"<!DOCTYPE html>
 			<html>
 				<head>
-					<title>Login</title>
+					<title>FamilyBook</title>
 					<meta charset=utf-8>
 				</head>
 				<body>
