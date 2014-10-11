@@ -6,7 +6,7 @@ class UserController{
 	
 	public function showLoginForm(){
 	
-	return "Mohaha";	
+		return "Mohaha";	
 	}
 
 }
