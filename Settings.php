@@ -1,7 +1,7 @@
 <?php
 
 class Settings {
-	public static $ROOT_PATH = 'Projekt-FamilyBook';
+	public static $ROOT_PATH = 'familybook';
 	public static $DO_DEBUG = true;
 	public static $ERROR_LOG = "errors.log";
 	
