@@ -1,35 +1,36 @@
 body{
 	height:100%;
-	background-color:#FFFFFF;
+	background-image:url(45degreee_fabric.png);
+	
 }
 
 #LoginForm{
 	width:600px;
 	height:400px;
-	background-color:#F5F5F5;
+	background-color:white;
 	position:absolute;
     top:-20%;
    	bottom:0;
     left: 0;
     right: 0;
     margin:auto;
-   box-shadow: 1px 1px 2px 3px #c7c7c7;
+   box-shadow: 1px 1px 2px 3px  #b3b3b3;
 	
 }
 
 h1{
 		
-	margin-top:-22px;
+	margin-top:-25px;
 	margin-left:25%;
 	font-family: 'Lora';
-	font-size:300%;
+	font-size:350%;
 	color:#9E363F;
 	text-shadow: 1px 1px #c7c7c7;
 
 }
 h2{
 	font-size:300%;
-	margin-top:-40px;
+	margin-top:-50px;
 	margin-bottom:10px;
 	margin-left:5%;
 	font-family: 'Dancing Script';
