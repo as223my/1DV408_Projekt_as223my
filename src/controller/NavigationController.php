@@ -3,6 +3,7 @@ namespace controller;
 
 require_once("./src/controller/LoginController.php");
 require_once("./src/controller/UserPageController.php");
+require_once("./src/controller/RegistrationController.php");
 require_once("./src/view/NavigationView.php");
 
 class NavigationController{
@@ -12,6 +13,10 @@ class NavigationController{
 		
 		try {
 			switch (\view\NavigationView::getAction()){
+				case \view\NavigationView::$actionRegistration:
+					$controller = new RegistrationController();
+					return "Haha!";
+					break;
 				case \view\NavigationView::$actionUserPage:
 					$controller = new UserPageController();
 					return "Din sida!";

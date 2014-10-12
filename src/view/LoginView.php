@@ -7,10 +7,10 @@ class LoginView{
 	
 	private $sessionHelper;
 	
-	private static $group = 'group';
-	private static $username = 'username';
-	private static $password = 'password';
-	private static $checkbox = 'checkbox'; 
+	private static $group = "group";
+	private static $username = "username";
+	private static $password = "password";
+	private static $checkbox = "checkbox"; 
 	
 	public function __construct(){
 		$this->sessionHelper = new \helpers\Session();
@@ -30,6 +30,7 @@ class LoginView{
 		
 		$html = "
 		<div id='LoginForm'>
+		 <a href='?action=" .NavigationView::$actionRegistration. "'>Ny användare?</a>
 			 <h1>FamilyBook</h1>
 			 <h2>Login</h2>
 			 <form method='post' action='?action=" .NavigationView::$actionLogin. "'>
@@ -37,7 +38,7 @@ class LoginView{
 				 <input type='text' name='" .self::$group. "' maxlength='50' value=''><br />
 				 <label for='" .self::$username. "'>Användarnamn</label><br />
 				 <input type='text' name='" .self::$username. "'  maxlength='50' value=''><br />
-				 <label for='" . self::$password . "'>Lösenord</label><br />
+				 <label for='" . self::$password . "' >Lösenord</label><br />
 				 <input type='text' name='" .self::$password. "' maxlength='50' value=''>
 				  <label for='" .self::$checkbox. "'>Håll mig inloggad</label>
 				 <input type='checkbox' name='" .self::$checkbox. "'class = 'checkbox'>	
