@@ -20,7 +20,7 @@ class RegistrationController{
 		$this->userRepository = new \model\UserRepository();
 	}
 	
-	public function RegistrationForm(){
+	public function RegistrationForm1(){
 		$regformInput = $this->registrationView->didUserPressRegGroup();
 		$groupname = $regformInput[0];
 		$numberOfUsers = $regformInput[1];
@@ -29,19 +29,45 @@ class RegistrationController{
 			return $this->registrationView->showRegistrationForm1();
 		}else{
 			
-			if($this->user->checkGroupName($groupname) && !$this->user->tagInInput()){
+			if($this->user->checkGroupName($groupname) && !$this->user->tagInGroupName()){
 				
-				if($this->userRepository->checkGroupName($this->user)){
+				if($this->userRepository->checkIfGroupNameExists($groupname, $numberOfUsers)){
 					return $this->registrationView->showRegistrationForm1();
 				}else{
-					return $this->registrationView->showRegistrationForm2($groupname,$numberOfUsers);
+					return $this->registrationView->showRegistrationForm2($groupname,$numberOfUsers, array());
 				}
 			}else{
 				return $this->registrationView->showRegistrationForm1();
 			}
-	
-			
 		}
 	}
 	
+	public function RegistrationForm2(){
+
+		$numberAndGroup = $this->registrationView->getNumberAndGroup();
+		if($numberAndGroup === null){
+			\view\NavigationView::RedirectHome(); 
+		}
+		$numberOfUsers = $numberAndGroup[0];
+		$groupName = $numberAndGroup[1];
+		$userNames = $this->registrationView->getUserNames($numberOfUsers);
+		// CheckUsernames
+		$this->user->checkUserNames($userNames);
+		if($this->user->tagUserName() || $this->user->emptyUserName()){
+			return $this->registrationView->showRegistrationForm2($groupName,$numberOfUsers, $this->user->getokUsernames());
+		}
+		
+		
+		$passwords = $this->registrationView->getPasswords($numberOfUsers);
+		var_dump($userNames);
+		var_dump($passwords);
+		
+		
+		
+		return "apa";
+		//\view\NavigationView::RedirectHome(); 
+		
+		
+		
+	}
 }

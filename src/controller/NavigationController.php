@@ -15,7 +15,11 @@ class NavigationController{
 			switch (\view\NavigationView::getAction()){
 				case \view\NavigationView::$actionRegistration:
 					$controller = new RegistrationController();
-					return $controller->RegistrationForm();
+					return $controller->RegistrationForm1();
+					break;
+				case \view\NavigationView::$actionRegistration2:
+					$controller = new RegistrationController();
+					return $controller->RegistrationForm2();
 					break;
 				case \view\NavigationView::$actionUserPage:
 					$controller = new UserPageController();

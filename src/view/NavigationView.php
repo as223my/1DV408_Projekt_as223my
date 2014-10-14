@@ -8,7 +8,9 @@ class NavigationView{
 	
 	public static $actionLogin = "login";
 	public static $actionRegistration = "registration"; 
+	public static $actionRegistration2 = "registration2"; 
 	public static $actionUserPage = "userPage";
+
 	
 	
 	public static function getAction(){

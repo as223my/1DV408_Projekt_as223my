@@ -14,7 +14,7 @@ class UserRepository extends base\Repository{
 		$this->sessionHelper = new \helpers\Session(); 
 	}
 	
-	public function checkGroupName(User $user){
+	public function checkIfGroupNameExists($groupName, $numberOfUsers){
 	    $db = $this -> connection();
 		$sql = "SELECT " . self::$name . " FROM `" . self::$groupTable . "`";
 		
@@ -24,7 +24,7 @@ class UserRepository extends base\Repository{
 		foreach ($query->fetchAll() as $result){
 			foreach ($result as $key => $value){
 				if($key === self::$name){		
-    				if($value === $user->getGroupName()){
+    				if($value === $groupName){
     					$this->sessionHelper->setMessage("Gruppnamnet är redan upptaget!");
     					return true;
     				}

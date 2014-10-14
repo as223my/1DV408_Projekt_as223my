@@ -25,6 +25,35 @@ class RegistrationView{
 		}	
 	}
 	
+	public function getNumberAndGroup(){
+		if(isset($_POST["regUsers"])){
+			return array($_POST[self::$numberOfUsers], $_POST[self::$group]);
+		}else{
+			return null;
+		}	
+	}
+	
+	public function getUserNames($numberOfUsers){
+		if(isset($_POST["regUsers"])){
+			$arr  = array();
+			for($i=1; $i <= $numberOfUsers; $i++){
+				array_push($arr,$_POST[self::$name.strval($i)]);
+			}
+			return $arr;
+		}
+	}
+	
+	public function getPasswords($numberOfUsers){
+		if(isset($_POST["regUsers"])){
+			$arr  = array();
+			for($i=1; $i <= $numberOfUsers; $i++){
+				array_push($arr,$_POST[self::$password.strval($i)]);
+			}
+			return $arr;
+		}
+	}
+	
+	
 	public function showRegistrationForm1(){
 	$message = $this->sessionHelper->getMessage();
 		
@@ -56,7 +85,7 @@ class RegistrationView{
 		return $html;
 	}
 
-	public function showRegistrationForm2($groupName,$numberOfUsers){
+	public function showRegistrationForm2($groupName,$numberOfUsers, array $usernames){
 		$message = $this->sessionHelper->getMessage();
 		
 		$html = "
@@ -64,24 +93,51 @@ class RegistrationView{
 		 <a href='?action=" .NavigationView::$actionRegistration. "'>Tillbaka</a>
 			<h1>FamilyBook</h1>
 			<h2>Registrering - Steg 2</h2>
-			<h3>Grupp namn: $groupName </h3>";
-			for($i=1; $i<=$numberOfUsers; $i++){
-				$html .="	
-				<label for='" .self::$name. "'>Användarnamn</label>
-				<label for='" .self::$password. "' class = 'labelPassword'>Lösenord</label><br />
-				<input type='text' name='" .self::$name."$i' maxlength='30' value=''>
-				<input type='password' name='" .self::$password. "$i' maxlength='30' value=''><br />";
+			<form method='post' action='?action=" .NavigationView::$actionRegistration2. "'>";
+				$html .= "<input type='hidden' name='" .self::$group."' value='$groupName'>
+			 	<input type='hidden' name='" .self::$numberOfUsers."' value='$numberOfUsers'>";
+			 	
+			  	if(empty($usernames)){
+					for($i=1; $i<=$numberOfUsers; $i++){
+						$html .="	
+						<label for='" .self::$name. "'>Användarnamn</label>
+						<label for='" .self::$password. "' class = 'labelPassword'>Lösenord</label><br />
+						<input type='text' name='" .self::$name."$i' maxlength='30' value=''>
+						<input type='password' name='" .self::$password. "$i' maxlength='30' value=''><br />";
+					}
+					
+			  }else{
+				$numberInArray = 0;
+				
+				for($i=1; $i <= count($usernames); $i++){
+					$html .="	
+					<label for='" .self::$name. "'>Användarnamn</label>
+					<label for='" .self::$password. "' class = 'labelPassword'>Lösenord</label><br />
+					<input type='text' name='" .self::$name."$i' maxlength='30' value='$usernames[$numberInArray]'>
+					<input type='password' name='" .self::$password. "$i' maxlength='30' value=''><br />";
+					$numberInArray++;
 				}
+				
+				$number = count($usernames) + 1;
+				$usersAfter = $numberOfUsers - count($usernames);
+			
+				for($i=0; $i < $usersAfter; $i++){
+					$html .="	
+					<label for='" .self::$name. "'>Användarnamn</label>
+					<label for='" .self::$password. "' class = 'labelPassword'>Lösenord</label><br />
+					<input type='text' name='" .self::$name."$number' maxlength='30' value=''>
+					<input type='password' name='" .self::$password. "$number' maxlength='30' value=''><br />";
+					$number++;
+				}
+			}
 			$html .=" 
+			<input type='submit' name='regUsers'  value='Registrera användare' class ='regbutton'/>
+			<p>$message</p>
 			
-				<input type='submit' name='regGroup'  value='Registrera Grupp' class ='regbutton'/>
-				<p>$message</p>
-			
-			 </form>
-		 </div>";
+			</form>
+		</div>";
 		
-		return $html;
-			
+		return $html;	
 	}
 	
 }
