@@ -6,7 +6,7 @@ body{
 
 #LoginForm, #RegForm1{
 	width:600px;
-	height:450px;
+	height:auto;
 	background-color:white;
 	position:absolute;
     top:-20%;

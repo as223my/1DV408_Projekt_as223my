@@ -65,7 +65,9 @@ class UserRepository extends base\Repository{
 	}
 	
 	public function addUsers(array $usernames, array $passwords, $numberOfUsers, $groupID, $groupName){
+		
 		$db = $this->connection();
+		
 		for($i=0; $i<$numberOfUsers; $i++){
 			$sql = "INSERT INTO $this->userTable(" .self::$userID. "," .self::$username. "," .self::$password. "," .self::$groupID. ") VALUES (?, ?, ?, ?)";
 			// Byt ut md5 mot hasssched?? (Funkar ej med aptana)
