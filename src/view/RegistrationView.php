@@ -131,7 +131,7 @@ class RegistrationView{
 				}
 			}
 			$html .=" 
-			<input type='submit' name='regUsers'  value='Registrera användare' class ='regbutton'/>
+			<input type='submit' name='regUsers'  value='Registrera användare' class ='regbutton2'/>
 			<p>$message</p>
 			
 			</form>

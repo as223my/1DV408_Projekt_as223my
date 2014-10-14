@@ -4,7 +4,7 @@ body{
 	
 }
 
-#LoginForm, #RegForm1, #RegForm2{
+#LoginForm, #RegForm1{
 	width:600px;
 	height:400px;
 	background-color:white;
@@ -18,7 +18,15 @@ body{
 }
 
 #RegForm2{
-	height:800px;
+	width:600px;
+	height:auto;
+	position:absolute;
+    top:10%;
+    left: 0;
+    right: 0;
+    margin:auto;
+	background-color:white;
+   box-shadow: 1px 1px 2px 3px  #b3b3b3;	
 }
 #LoginForm a, #RegForm1 a, #RegForm2 a{
 	line-height:20px;
@@ -79,8 +87,10 @@ label{
 	line-height:40px;
 }
 
-
-.submitbutton, .regbutton{
+.labelPassword{
+	margin-left:118px;
+}
+.submitbutton, .regbutton, .regbutton2{
 	width:100px;
 	height:30px;
 	margin-top:20px;
@@ -89,11 +99,15 @@ label{
 	color:#9E363F;
 }
 
-.regbutton{
+.regbutton, .regbutton2{
 	width:200px;
 	margin-top:20px;
 }
-.submitbutton:hover, .regbutton:hover{
+.regbutton2{
+	
+	width:250px;
+}
+.submitbutton:hover, .regbutton:hover, .regbutton2:hover{
 	color:black;
 }
 
