@@ -43,7 +43,6 @@ class LoginView{
 				 <input type='checkbox' name='" .self::$checkbox. "'class = 'checkbox'>	
 				 <input type='submit' name='login'  value='Logga in' class ='submitbutton'/>
 				  <p>$message</p>
-			
 			 </form>
 		 </div>";
 		

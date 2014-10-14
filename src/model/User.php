@@ -13,8 +13,8 @@ class User{
 	
 	private $tagUserName;
 	private $emptyUserName;
-
 	private $okUsername = array();
+	
 	
 	public function __construct(){
 		$this->sessionMessage = new \helpers\Session(); 
@@ -33,7 +33,7 @@ class User{
 		}
 	}
 	
-	public function checkUserNames(array $names){ 
+	public function checkUserNames(array $names){
 		foreach ($names as $value) {
 			if($value === ""){
 				$this->emptyUserName = true;
@@ -43,6 +43,23 @@ class User{
 				array_push($this->okUsername,$checkedInput);
 			}
 		}	
+	}
+
+	public function userNameUnique(){
+		if(count($this->okUsername) != count(array_unique($this->okUsername))){
+			$this->sessionMessage->setMessage("Användarnamnen måste vara unika!");
+  			return true;
+		}
+	}
+	
+	public function checkPasswords(array $passwords){
+		foreach($passwords as $value){	    
+			if(strlen($value) < 3){
+				$this->sessionMessage->setMessage("Lösenorden måste minst innehålla 3 tecken!");
+				return true;
+			}
+		}
+		
 	}
 	
 	public function checkForTagsGroupName($input){

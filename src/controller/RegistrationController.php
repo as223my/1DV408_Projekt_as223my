@@ -3,11 +3,12 @@
 namespace controller;
 
 require_once("./src/view/RegistrationView.php");
+require_once("./src/view/LoginView.php");
 require_once("./src/model/User.php");
 require_once("./src/model/UserRepository.php");
 
 class RegistrationController{
-	
+	private $loginView;
 	private $registrationView;
 	private $user;
 	private $userRepository;
@@ -16,6 +17,7 @@ class RegistrationController{
 	public function __construct(){
 		
 		$this->registrationView = new \view\RegistrationView();
+		$this->loginView = new \view\LoginView();
 		$this->user = new \model\User();
 		$this->userRepository = new \model\UserRepository();
 	}
@@ -51,23 +53,18 @@ class RegistrationController{
 		$numberOfUsers = $numberAndGroup[0];
 		$groupName = $numberAndGroup[1];
 		$userNames = $this->registrationView->getUserNames($numberOfUsers);
-		// CheckUsernames
-		$this->user->checkUserNames($userNames);
-		if($this->user->tagUserName() || $this->user->emptyUserName()){
-			return $this->registrationView->showRegistrationForm2($groupName,$numberOfUsers, $this->user->getokUsernames());
-		}
-		
-		
 		$passwords = $this->registrationView->getPasswords($numberOfUsers);
-		var_dump($userNames);
-		var_dump($passwords);
 		
-		
-		
-		return "apa";
-		//\view\NavigationView::RedirectHome(); 
-		
-		
+		$this->user->checkUserNames($userNames);
+		$this->user->checkPasswords($passwords);
+		if($this->user->tagUserName() || $this->user->emptyUserName() || $this->user->checkPasswords($passwords) || $this->user->userNameUnique()){
+			return $this->registrationView->showRegistrationForm2($groupName,$numberOfUsers, $this->user->getokUsernames());
+		}else{
+			$this->userRepository->addGroup($groupName);
+			$groupID = $this->userRepository->findGroupId($groupName);
+			$this->userRepository->addUsers($userNames,$passwords, $numberOfUsers, $groupID[0], $groupName);
+			return $this->loginView->showLoginForm();
+		}
 		
 	}
 }

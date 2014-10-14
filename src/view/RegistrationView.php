@@ -103,7 +103,7 @@ class RegistrationView{
 						<label for='" .self::$name. "'>Användarnamn</label>
 						<label for='" .self::$password. "' class = 'labelPassword'>Lösenord</label><br />
 						<input type='text' name='" .self::$name."$i' maxlength='30' value=''>
-						<input type='password' name='" .self::$password. "$i' maxlength='30' value=''><br />";
+						<input type='password' name='" .self::$password. "$i' maxlength='30' placeholder = '******' value=''><br />";
 					}
 					
 			  }else{
@@ -114,7 +114,7 @@ class RegistrationView{
 					<label for='" .self::$name. "'>Användarnamn</label>
 					<label for='" .self::$password. "' class = 'labelPassword'>Lösenord</label><br />
 					<input type='text' name='" .self::$name."$i' maxlength='30' value='$usernames[$numberInArray]'>
-					<input type='password' name='" .self::$password. "$i' maxlength='30' value=''><br />";
+					<input type='password' name='" .self::$password. "$i' maxlength='30' placeholder = '******' value=''><br />";
 					$numberInArray++;
 				}
 				
@@ -126,7 +126,7 @@ class RegistrationView{
 					<label for='" .self::$name. "'>Användarnamn</label>
 					<label for='" .self::$password. "' class = 'labelPassword'>Lösenord</label><br />
 					<input type='text' name='" .self::$name."$number' maxlength='30' value=''>
-					<input type='password' name='" .self::$password. "$number' maxlength='30' value=''><br />";
+					<input type='password' name='" .self::$password. "$number' maxlength='30' placeholder = '******' value=''><br />";
 					$number++;
 				}
 			}
