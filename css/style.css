@@ -4,7 +4,7 @@ body{
 	
 }
 
-#LoginForm{
+#LoginForm, #RegForm1, #RegForm2{
 	width:600px;
 	height:400px;
 	background-color:white;
@@ -17,15 +17,36 @@ body{
    box-shadow: 1px 1px 2px 3px  #b3b3b3;	
 }
 
-#LoginForm a{
+#RegForm2{
+	height:100%; 
+}
+
+#LoginForm a, #RegForm1 a, #RegForm2 a{
 	line-height:20px;
 	margin-left:78%;
 	font-family: 'Lora';
 	color:black;
 }
 
-#LoginForm a:hover{
+#RegForm1 a, #RegForm2 a{
+	margin-left:87%;
+}
+
+#LoginForm a:hover, #RegForm1 a:hover, #RegForm2 a:hover{
 	font-size: 110%;
+}
+
+#RegForm1 h2, #RegForm2 h2{
+	font-size:250%;
+	margin-top:-10px;
+	margin-bottom:20px;
+}
+
+#RegForm1 p, #LoginForm p, #RegForm2 p{
+	font-family: 'Lora';
+	font-size:120%;
+	margin-left:5%;
+	color:#ff7d88;
 }
 
 h1{	
@@ -45,6 +66,13 @@ h2{
 	font-family: 'Dancing Script';
 }
 
+h3{
+	font-family: 'Lora';
+	margin-left:5%;
+
+}
+
+
 input{
 	margin-left:5%;
 	height:20px;
@@ -59,7 +87,7 @@ label{
 }
 
 
-.submitbutton{
+.submitbutton, .regbutton{
 	width:100px;
 	height:30px;
 	margin-top:20px;
@@ -68,12 +96,20 @@ label{
 	color:#9E363F;
 }
 
-.submitbutton:hover{
-	color: #557255;
+.regbutton{
+	width:200px;
+	margin-top:20px;
+}
+.submitbutton:hover, .regbutton:hover{
+	color:black;
 }
 
 .checkbox{
 	margin-left:-85px;
+}
+
+.labelPassword{
+	margin-left:100px;
 }
 
 

@@ -14,7 +14,6 @@ class LoginView{
 	
 	public function __construct(){
 		$this->sessionHelper = new \helpers\Session();
-		
 	}
 	
 	public function didUserPressLogin(){
@@ -42,8 +41,8 @@ class LoginView{
 				 <input type='text' name='" .self::$password. "' maxlength='50' value=''>
 				  <label for='" .self::$checkbox. "'>Håll mig inloggad</label>
 				 <input type='checkbox' name='" .self::$checkbox. "'class = 'checkbox'>	
-				 <p>$message</p>
 				 <input type='submit' name='login'  value='Logga in' class ='submitbutton'/>
+				  <p>$message</p>
 			
 			 </form>
 		 </div>";
