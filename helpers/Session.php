@@ -3,8 +3,7 @@ namespace helpers;
 
 class Session{
 	private static $sessionMessage = "sessionMessage";
-	private static $sessionGroupName = "sessionGroupName";
-	private static $sessionNumberOfUsers = "sessionNumberOfUsers";
+	private static $sessionId = "sessionId"; 
 	
 	public function setMessage($string){
       	$_SESSION[self::$sessionMessage] = $string;
@@ -20,5 +19,13 @@ class Session{
       }
       return $message;
     }
+	
+	public function setId($number){
+      	$_SESSION[self::$sessionId] = $number;
+    }
+	
+	public function getId(){
+		return $_SESSION[self::$sessionId];
+	}
 	
 }

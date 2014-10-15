@@ -2,10 +2,12 @@
 namespace view;
 
 require_once("./helpers/Session.php");
+require_once("./helpers/CookieStorage.php");
 
 class LoginView{
 	
 	private $sessionHelper;
+	private $cookies;
 	
 	private static $group = "group";
 	private static $username = "username";
@@ -14,16 +16,44 @@ class LoginView{
 	
 	public function __construct(){
 		$this->sessionHelper = new \helpers\Session();
+		$this->cookies = new \helpers\CookieStorage();
+	}
+	
+	public function getHttpUserAgent(){
+		return $_SERVER["HTTP_USER_AGENT"];
 	}
 	
 	public function didUserPressLogin(){
 		if(isset($_POST["login"])){
-			return array($_POST[self::$group], $_POST[self::$username], $_POST[self::$password], $_POST[self::$checkbox]);
+			return array($_POST[self::$group], $_POST[self::$username], $_POST[self::$password]);
 		}else{
 			return null;
 		}	
 	}
+	
+	public function checkbox(){
+		if(isset($_POST["checkbox"])){
+			$this->cookies->saveCookies($_POST[self::$group], $_POST[self::$username], $_POST[self::$password]);
+		}	
+	}
+	
+	public function checkLoggedInCookies(){
+		$cookies = $this->cookies->getCookies();
+		
+		if($cookies === null){
+			return null;
+		}else{
+			return $cookies;
+		}
+		
+	}
+	
+	public function checkTimeStampCookie(){
+		return $this->cookies->checkTime();
+	}
+	
 	public function showLoginForm(){
+		$this->cookies->deleteCookies();
 		
 		$message = $this->sessionHelper->getMessage();
 		

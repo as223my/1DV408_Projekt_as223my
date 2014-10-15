@@ -22,8 +22,15 @@ class NavigationController{
 					return $controller->RegistrationForm2();
 					break;
 				case \view\NavigationView::$actionUserPage:
-					$controller = new UserPageController();
-					return "Din sida!";
+					// login - securitycheck
+					$controller1 = new LoginController();
+					$result = $controller1->checkLogin();
+					if($result === true){
+						$controller2 = new UserPageController();
+						return $controller2->test();
+					}else{
+						return $result;
+					}
 					break;
 					
 				default:

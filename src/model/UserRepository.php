@@ -40,6 +40,20 @@ class UserRepository extends base\Repository{
 	    return false;
 	}
 	
+	public function checkUser($username,$password,$groupId){
+		
+		$db = $this->connection();
+		$sql = "SELECT " . self::$userID . " FROM $this->userTable WHERE " . self::$username . " = ? AND " . self::$password. "= ? AND " . self::$groupID. "= ?";
+		
+		$params = array($username,$password,$groupId);
+		$query = $db->prepare($sql);
+		$query->execute($params);
+		
+		$result = $query->fetch();
+		
+		return $result;
+	}
+	
 	public function addGroup($groupName){
 	
 			$db = $this->connection();
@@ -51,6 +65,8 @@ class UserRepository extends base\Repository{
 	}
 	
 	public function findGroupId($groupName){
+		
+		
 		$db = $this->connection();
 		
 		$sql ="SELECT " . self::$groupID . " FROM `$this->groupTable` WHERE " . self::$name . " = ?";
@@ -60,9 +76,10 @@ class UserRepository extends base\Repository{
 		$query->execute($params);
 		
 		$result = $query->fetch();
-		
+
 		return $result;
 	}
+	
 	
 	public function addUsers(array $usernames, array $passwords, $numberOfUsers, $groupID, $groupName){
 		

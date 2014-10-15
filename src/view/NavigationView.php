@@ -25,5 +25,12 @@ class NavigationView{
 	public static function RedirectHome(){
 		header('Location: /' . \Settings::$ROOT_PATH. '/');
 	}
+	
+	public static function RedirectToUser(){
+					 
+		header('Location: /' . \Settings::$ROOT_PATH. '/?'.self::$action.'=' .self::$actionUserPage);
+	}
+	
+	
 
 }
