@@ -15,11 +15,11 @@ class NavigationController{
 			switch (\view\NavigationView::getAction()){
 				case \view\NavigationView::$actionRegistration:
 					$controller = new RegistrationController();
-					return $controller->RegistrationForm1();
+					return $controller->registrationForm1();
 					break;
 				case \view\NavigationView::$actionRegistration2:
 					$controller = new RegistrationController();
-					return $controller->RegistrationForm2();
+					return $controller->registrationForm2();
 					break;
 				case \view\NavigationView::$actionUserPage:
 					// login - securitycheck
@@ -35,7 +35,7 @@ class NavigationController{
 					
 				default:
 					$controller = new LoginController();
-					return $controller->LoginForm();
+					return $controller->loginForm();
 					break;
 			}
 

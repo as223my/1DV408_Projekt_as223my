@@ -53,9 +53,11 @@ class LoginView{
 	}
 	
 	public function showLoginForm(){
-		$this->cookies->deleteCookies();
 		
 		$message = $this->sessionHelper->getMessage();
+		if($message === "Fel på cookies!"){
+			$this->cookies->deleteCookies();
+		}
 		
 		$html = "
 		<div id='LoginForm'>

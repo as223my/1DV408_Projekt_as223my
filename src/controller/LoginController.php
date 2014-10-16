@@ -47,13 +47,12 @@ class LoginController{
 		return $this->loginView->showLoginForm(); 
 	}
 	
-	public function LoginForm(){
-		
-		if($this->checkLogin()){
+	public function loginForm(){
+
+		if($this->checkLogin() === true){
 			\view\NavigationView::RedirectToUser();
-		}
+		}else{
 		
-	
 		$loginformInput = $this->loginView->didUserPressLogin();
 		
 		if($loginformInput === null){
@@ -67,14 +66,12 @@ class LoginController{
 		
 		if($this->loginModel->checkUserCredentialsLogin($groupname, $username, $password)){
 				$this->loginView->checkbox();
-					
-				
-			
+	
 			\view\NavigationView::RedirectToUser();
 		}else{
 			return $this->loginView->showLoginForm();
 		}
+		}
 	}
-	
 
 }

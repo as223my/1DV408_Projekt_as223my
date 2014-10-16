@@ -43,16 +43,16 @@ class Login{
 	}
 	
 	public function checkUserCredentials($username, $password, $groupname, $cookieTime){
-		
+		$cookieWrong = "Fel på cookies!";
 		$groupId = $this->userRepository->findGroupId($groupname);
 		if(empty($groupId)){
-			$this->sessionHelper->setMessage("Fel på Cookies!");
+			$this->sessionHelper->setMessage($cookieWrong);
 			return false;
 		}else{
 			
 			$result = $this->userRepository->checkUser($username,$password,$groupId[0]);
 			if(empty($result) || $cookieTime === false){
-				$this->sessionHelper->setMessage("Fel på Cookies!");
+				$this->sessionHelper->setMessage($cookieWrong);
 				return false;
 			}else{
 				$this->sessionHelper->setId($result[0]);

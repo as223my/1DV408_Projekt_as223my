@@ -22,7 +22,7 @@ class RegistrationController{
 		$this->userRepository = new \model\UserRepository();
 	}
 	
-	public function RegistrationForm1(){
+	public function registrationForm1(){
 		$regformInput = $this->registrationView->didUserPressRegGroup();
 		$groupname = $regformInput[0];
 		$numberOfUsers = $regformInput[1];
@@ -44,7 +44,7 @@ class RegistrationController{
 		}
 	}
 	
-	public function RegistrationForm2(){
+	public function registrationForm2(){
 
 		$numberAndGroup = $this->registrationView->getNumberAndGroup();
 		if($numberAndGroup === null){

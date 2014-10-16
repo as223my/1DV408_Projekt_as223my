@@ -3,7 +3,11 @@ namespace helpers;
 
 class CookieStorage{
 	
-	private $timeLengthCookie = 60;
+	private $timeLengthCookie;
+	
+	public function __construct(){
+		$this->timeLengthCookie = 60;
+	}
 	
 	public function getCookies(){
 		if($this->getCookieGroupName() === null || $this->getCookieUsername() === null || $this->getCookiePassword() === null || $this->getCookieTimestamp() === null){
@@ -49,10 +53,14 @@ class CookieStorage{
 	}
 	
 	public function deleteCookies(){
-		setcookie("groupname", '', time() - $this->timeLengthCookie, '/');
-		setcookie("username", '', time() - $this->timeLengthCookie, '/');
-		setcookie("password", '', time() - $this->timeLengthCookie,'/');
-		setcookie("timestamp", '', time() - $this->timeLengthCookie, '/');
+
+		if (isset($_COOKIE['groupname']) || isset($_COOKIE['username']) || isset($_COOKIE['password']) || isset($_COOKIE['timestamp'])) {
+			setcookie("groupname", '', time() - $this->timeLengthCookie, '/');
+			setcookie("username", '', time() - $this->timeLengthCookie, '/');
+			setcookie("password", '', time() - $this->timeLengthCookie,'/');
+			setcookie("timestamp", '', time() - $this->timeLengthCookie, '/');
+		}
+	
 	}
 	
 	public function checkTime(){
