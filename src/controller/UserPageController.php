@@ -2,16 +2,20 @@
 
 namespace controller;
 
+require_once("./src/view/UserPageView.php");
 
 class UserPageController{
-
+	private $userpageView;
+	
+	public function __construct(){
 		
-	public function test(){
+		$this->userpageView = new \view\UserPageView();
+	
+	}
 		
-
-
-		$html = "<h1> INLOGGAD! </h1>";
-		return $html;
+	public function userPage(){
+		return $this->userpageView->showUserPage();
+	
 	}
 	
 }

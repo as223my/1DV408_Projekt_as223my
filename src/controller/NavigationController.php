@@ -27,12 +27,15 @@ class NavigationController{
 					$result = $controller1->checkLogin();
 					if($result === true){
 						$controller2 = new UserPageController();
-						return $controller2->test();
+						return $controller2->userPage();
 					}else{
 						return $result;
 					}
 					break;
-					
+				case \view\NavigationView::$actionLogout:
+					$controller = new LoginController();
+					return $controller->logout();
+					break;
 				default:
 					$controller = new LoginController();
 					return $controller->loginForm();

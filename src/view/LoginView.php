@@ -52,11 +52,15 @@ class LoginView{
 		return $this->cookies->checkTime();
 	}
 	
+	public function checkCookiesDeleted(){
+		return $this->cookies->deleteCookies();
+	}
+	
 	public function showLoginForm(){
 		
 		$message = $this->sessionHelper->getMessage();
 		if($message === "Fel på cookies!"){
-			$this->cookies->deleteCookies();
+			$this->checkCookiesDeleted();
 		}
 		
 		$html = "

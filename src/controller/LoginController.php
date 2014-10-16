@@ -17,6 +17,12 @@ class LoginController{
 		$this->loginModel = new \model\Login();
 	}
 	
+	public function logout(){
+		$this->loginView->checkCookiesDeleted();
+		$this->loginModel->sessionDestroy();
+		return $this->loginView->showLoginForm();
+	}
+	
 	public function checkLogin(){
 		// Ser till så att man som inloggad är skyddad mot sessionstöld i en annan typ av webbläsare. 
 		if($this->loginModel->session($this->loginView->getHttpUserAgent()) === false){
