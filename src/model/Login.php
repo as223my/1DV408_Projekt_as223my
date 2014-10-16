@@ -35,6 +35,9 @@ class Login{
 				return false;
 			}else{
 				$this->sessionHelper->setId($result[0]);
+				$this->sessionHelper->setName($username);
+				$this->sessionHelper->setGroupId($groupId[0]);
+				$this->sessionHelper->setGroupName($groupname);
 				$_SESSION['username'] = $username;
 				return true;
 			}
@@ -56,6 +59,9 @@ class Login{
 				return false;
 			}else{
 				$this->sessionHelper->setId($result[0]);
+				$this->sessionHelper->setName($username);
+				$this->sessionHelper->setGroupId($groupId[0]);
+				$this->sessionHelper->setGroupName($groupname);
 				$_SESSION['username'] = $username;
 				return true;
 			}

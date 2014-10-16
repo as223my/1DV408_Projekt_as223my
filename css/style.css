@@ -28,6 +28,102 @@ body{
 	background-color:white;
    box-shadow: 1px 1px 2px 3px  #b3b3b3;	
 }
+
+#UserPage{
+	width:50%;
+	height:80%;
+	position:absolute;
+    top:100px;
+    left: 0;
+    right: 0;
+    margin:auto;
+	background-color:white;
+   box-shadow: 1px 1px 2px 3px  #b3b3b3;
+   overflow: auto;
+}
+
+#head h1{
+	margin-top:0;
+	margin-left:-5%;
+	text-align:center;
+}
+
+#UserPage h2{
+	float:right;
+	font-size:200%;
+	margin-top:0;
+	margin-right:10px;
+
+}
+
+#UserPage h3{
+	font-family: 'Lora';
+	font-size:150%;
+	color:#ff7d88;
+	margin-left:1%;
+	margin-top:0;
+}
+
+#head a{
+	position:absolute;
+	 top:50px;
+    left: 70%;
+    right: 0;
+    margin:auto;;
+	font-family: 'Lora';
+	color:black;
+}
+
+#messageDiv{
+	background-color:#f8f8f8;
+	width:60%;
+	height:60%;
+	margin-left:auto;
+	margin-right:auto;
+	overflow:auto;
+	 box-shadow: 1px 1px 1px 1px  #b3b3b3;	
+}
+
+.textarea{
+	width:50%;
+	margin-top:10px;
+	margin-left:20%;
+}
+
+.sendButton{
+	margin-left:20%;
+	font-family: 'Lora';
+	font-size:100%;
+	width:100px;
+	height:30px;
+	color:#9E363F;
+	
+}
+
+#noteDiv{
+	width:20%;
+	height:80%;
+	position:absolute;
+    top:100px;
+    left: 72%;
+    right: 0;
+    margin:auto;
+	background-color:yellow;
+	border:1px solid black;
+}
+
+#userDiv{
+	width:20%;
+	height:80%;
+	position:absolute;
+    top:100px;
+    left:0;
+    right: 72%;
+    margin:auto;
+	background-color:green;
+	border:1px solid black;	
+}
+
 #LoginForm a, #RegForm1 a, #RegForm2 a{
 	line-height:20px;
 	margin-left:78%;
@@ -39,7 +135,7 @@ body{
 	margin-left:87%;
 }
 
-#LoginForm a:hover, #RegForm1 a:hover, #RegForm2 a:hover{
+#LoginForm a:hover, #RegForm1 a:hover, #RegForm2 a:hover, #UserPage a:hover{
 	font-size: 110%;
 }
 
@@ -107,7 +203,7 @@ label{
 	
 	width:250px;
 }
-.submitbutton:hover, .regbutton:hover, .regbutton2:hover{
+.submitbutton:hover, .regbutton:hover, .regbutton2:hover, .sendButton:hover{
 	color:black;
 }
 

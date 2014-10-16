@@ -4,6 +4,9 @@ namespace helpers;
 class Session{
 	private static $sessionMessage = "sessionMessage";
 	private static $sessionId = "sessionId"; 
+	private static $sessionName = "sessionName"; 
+	private static $sessionGroupId = "sessionGroupId";
+	private static $sessionGroupName = "sessionGroupName";  
 	
 	public function setMessage($string){
       	$_SESSION[self::$sessionMessage] = $string;
@@ -28,4 +31,27 @@ class Session{
 		return $_SESSION[self::$sessionId];
 	}
 	
+	public function setName($string){
+      	$_SESSION[self::$sessionName] = $string;
+    }
+	
+	public function getName(){
+		return $_SESSION[self::$sessionName];
+	}
+	
+	public function setGroupId($number){
+      	$_SESSION[self::$sessionGroupId] = $number;
+    }
+	
+	public function getGroupId(){
+		return $_SESSION[self::$sessionGroupId];
+	}
+	
+	public function setGroupName($string){
+		$_SESSION[self::$sessionGroupName] = $string;
+	}
+	
+	public function getGroupName(){
+		return $_SESSION[self::$sessionGroupName];
+	}
 }
