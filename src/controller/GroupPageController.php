@@ -40,14 +40,26 @@ class GroupPageController{
 		$userId = $this->sessionHelper->getId();
 		
 		$text = $this->grouppageView->getText();
+		$checkboxNotice = $this->grouppageView->checkboxNotice(); 
 			if($text !== null &&  $text !== ""){
-				$this->groupContentRepository->addText($text,$groupId,$userId); 
+				if($checkboxNotice !== null){
+					$time = time()+3600*24*$checkboxNotice; 
+					$this->groupContentRepository->addStickynote($text,	$time, $groupId, $userId); 
+				}else{
+					$this->groupContentRepository->addText($text,$groupId,$userId); 
+				}
 			}
 		
 		$deleteText = $this->grouppageView->deleteText(); 
 		
 		if($deleteText !== null){
 			$this->groupContentRepository->deleteText($deleteText, $groupId, $userId);
+		}
+		
+		$deleteSticky = $this->grouppageView->deleteSticky();
+		
+		if($deleteSticky !== null){
+			$this->groupContentRepository->deleteSticky($deleteSticky, $groupId, $userId);
 		}
 		
 		return $this->grouppageView->showGroupPage($groupName, $this->groupsRepository->getGroupsMemberName($groupId),$this->userRepository->getUserName($userId));
