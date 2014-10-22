@@ -217,10 +217,15 @@ body{
 	overflow:auto;	
 }
 
-.stickyText{
+.stickyText, .stickyText1{
+	margin-top:0px;
 	font-family: 'Lora';
 	font-size:110%;
 	margin-left:5px;
+}
+
+.stickyText1{
+	margin-top:15px;
 }
 
 textarea{
@@ -254,8 +259,8 @@ textarea{
 
 .deleteSticky{
 	width:20px;
-	float:right;
-	margin-top:-60px;
+	margin-left:200px;
+	margin-top:-200px;
 	background-color:transparent;
 	border:none;
 	cursor: pointer;

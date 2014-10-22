@@ -114,11 +114,12 @@ class GroupPageView{
 				if($stickyNote !== ""){
 					for($i=0;$i<count($nameToStickyNote);$i++){
 						if($nameToStickyNote[$i] == $userName){
-							$html .= "<div class = 'note'><p class = 'stickyText'>$stickyNote[$i]</p><form method='post' action='?action=" .NavigationView::$actionGroup. "&amp;".self::$groupname."=" .urlencode($groupname)."'>
+							$html .= "<div class = 'note'><form method='post' action='?action=" .NavigationView::$actionGroup. "&amp;".self::$groupname."=" .urlencode($groupname)."'>
 							<input type='submit' name='deleteSticky'  value='X' class ='deleteSticky'/>
+							<p class = 'stickyText'>$stickyNote[$i]</p>
 							<input type='hidden' name='" .self::$stickyDelete."' value='$stickyNote[$i]'></form></div>";	
 						}else{
-							$html .= "<div class = 'note'><p class = 'stickyText'>$stickyNote[$i]</p></div>";	
+							$html .= "<div class = 'note'><p class = 'stickyText1'>$stickyNote[$i]</p></div>";	
 						}
 					}
 				}

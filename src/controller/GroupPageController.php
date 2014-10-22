@@ -44,9 +44,9 @@ class GroupPageController{
 			if($text !== null &&  $text !== ""){
 				if($checkboxNotice !== null){
 					$time = time()+3600*24*$checkboxNotice; 
-					$this->groupContentRepository->addStickynote($text,	$time, $groupId, $userId); 
+					$this->groupContentRepository->addStickynote(nl2br($text, false),	$time, $groupId, $userId); 
 				}else{
-					$this->groupContentRepository->addText($text,$groupId,$userId); 
+					$this->groupContentRepository->addText(nl2br($text, false),$groupId,$userId); 
 				}
 			}
 		
