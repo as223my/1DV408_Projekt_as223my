@@ -115,7 +115,7 @@ body{
 #containerGroup{
 	width:1100px;
 	position:absolute;
-	left:20%;
+	left:15%;
 	height:100%;
 }
 
@@ -142,8 +142,9 @@ body{
 }
 
 .backGroup{
-	margin-right:80%;
-	margin-top:-20px;
+	position:absolute;
+	top:0;
+	right:90%;
 	font-family: 'Lora';
 	color:black;
 }
