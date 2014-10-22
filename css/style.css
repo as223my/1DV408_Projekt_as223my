@@ -170,11 +170,13 @@ body{
 
 .userNameGroup1{
 	color:#6e252c;
+	margin-top:-20px;
 	font-size:110%;
 }
 
 .textMessage, .textMessage1{
-	height:90px;
+	overflow:hidden;
+	height:auto;
 	border:1px solid black;
 	margin:10px;
 	background-color:#f5faf5;
@@ -192,11 +194,10 @@ body{
 }
 
 .deleteText{
-	margin-top:-55px;
-	float:right;
+	margin-left:345px;
 	background-color:#fdfdfd;
 	border:none;
-	width:80px;
+	width:50px;
 	font-weight:bold;
 	cursor:pointer;
 	font-family: 'Lora';

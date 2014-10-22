@@ -76,8 +76,9 @@ class GroupPageView{
 						if($nameToGroup !== ""){
 							if($nameToGroup[$i] == $userName){
 								$html .= "<div class = 'textMessage1'><form method='post' action='?action=" .NavigationView::$actionGroup. "&amp;".self::$groupname."=" .urlencode($groupname)."'>
+								<input type='submit' name='deleteText'  value='Ta bort' class ='deleteText'/>
 								<input type='hidden' name='" .self::$textDelete."' value='$textToGroup[$i]'>		
-								<p class = 'userNameGroup1'>$nameToGroup[$i]</p><p class = 'textGroup'>$textToGroup[$i]</p><input type='submit' name='deleteText'  value='Ta bort' class ='deleteText'/>
+								<p class = 'userNameGroup1'>$nameToGroup[$i]</p><p class = 'textGroup'>$textToGroup[$i]</p>
 								</form></div>"; 
 							}else{
 								$html .= "<div class = 'textMessage'><p class = 'userNameGroup'>$nameToGroup[$i]</p><p class = 'textGroup'>$textToGroup[$i]</p></div>"; 

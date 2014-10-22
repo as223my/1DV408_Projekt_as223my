@@ -3,14 +3,15 @@
 Jag har tänkt att göra en applikation som heter FamilyBook, i detta projekt.
 
 I min applikation vill jag ha ett flöde som liknar facebook, där man kan skapa och ta bort inlägg.
-I sin profil har man namn, en bild och en valfri kort text. 
 Flödet visas bara för personer som är inloggade i den skapade gruppen, därav blir applikationen mer privat än facebook.
-Det ska också gå att lägga till viktiga händelser som visas automatiskt inom en bestämd tid. 
+Det ska också gå att lägga till viktiga händelser (sticky notes) som visas automatiskt inom en bestämd tid. 
+När man är inloggad har man i sin profil möjlighet att skapa och ta bort grupper med medlemmar som finns registrerade. 
+
 
 ##AF1 - Logga in 
 ###Huvud scenario
 1. Användaren vill logga in i applikationen.
-2. Systemet frågar efter användarnamn, lösenord och gruppnamn.
+2. Systemet frågar efter användarnamn och lösenord.
 3. Användaren ger systemet dessa uppgifter.
 4. Användare loggas in i applikationen.
 
@@ -31,48 +32,86 @@ Det ska också gå att lägga till viktiga händelser som visas automatiskt inom
 
 ##AF3 - Registrera Användare
 ###Huvudscenario
-1. Användaren vill starta en ny grupp. 
-2. Systemet frågar efter tänkt gruppnamn.
-3. Användaren ger systemet ett gruppnamn.
-4. Systemet skapar en ny grupp och frågar användaren om antal användare samt användarnamn och lösenord för dessa.
-5. Användaren ger systemet användaruppgifterna. 
-6. Systemet skapar användarprofiler till gruppen.
+1. Användaren vill registrera en ny användare. 
+2. Systemet frågar efter tänkt användarnamn och lösenord.
+3. Användaren ger systemet ett användarnamn och lösenord.
+4. Systemet skapar en ny användare.
 
 ###Alternativt scenario
-4a. Användaren har valt ett gruppnamn som redan finns i systemet.
+3a. Användaren har valt ett användarnamn som redan finns i systemet.
+  1. Systemet presenterar ett felmeddelande.
+  2. Användaren väljer därefter ett nytt användarnamn.
+  3. Steg 4 i huvudscenario. 
+  
+##AF4 - Skapa Gruppp
+###Förhandsvillkor
+1. Användaren är inloggad, se AF1.
+
+###Huvudscenario
+1. Användaren vill skapa en ny grupp.  
+2. Systemet frågar efter gruppnamn och antal användare. 
+3. Användaren ger systemet ett gruppnamn och ett antal användare.
+4. Systemet frågar därefter efter användarnas namn som man vill lägg till i gruppen.
+5. Användaren ger systemet användarnamn. 
+6. Systemet skapar en grupp med de användare man valt. 
+
+###Alternativt scenario1
+3a. Användaren har valt ett gruppnamn som redan finns hos användaren. 
+  1. Systemet presenterar ett felmeddelande.
+  2. Användaren väljer därefter ett nytt gruppnamn.
+  3. Steg 4 i huvudscenario. 
+  
+###Alternativt scenario2
+5a. Användaren har valt ett användarnamn som inte finns registrerat. 
+  1. Systemet presenterar ett felmeddelande.
+  2. Användaren väljer därefter ett nytt användarnamn.
+  3. Steg 6 i huvudscenario. 
+  
+##AF5 - Ta bort Grupp
+###Förhandsvillkor
+1. Användaren är inloggad, se AF1.
+2. Användaren har skapat en grupp, se AF4.
+
+###Huvudscenario
+1. Användaren vill ta bort en grupp.  
+2. Systemet frågar efter gruppnamn. 
+3. Användaren ger systemet ett gruppnamn.
+4. Systemet tar bort gruppen från användaren.
+
+###Alternativt scenario
+3a. Användaren har valt ett gruppnamn som inte finns hos användaren. 
   1. Systemet presenterar ett felmeddelande.
   2. Användaren väljer därefter ett nytt gruppnamn.
   3. Steg 4 i huvudscenario. 
   
 
-##AF4 - Skapa inlägg.
+##AF6 - Skapa inlägg.
 ###Förhandsvillkor
 1. Användaren är inloggad, se AF1.
+2. Användaren har skapat en grupp, se AF4.
 
 ###Huvudscenario
-1. Användaren vill skapa ett inlägg.
+1. Användaren vill skapa ett inlägg i vald grupp.
 2. Systemet ber om innehåll till inlägget.
 3. Användaren ger systemet innehåll.
 4. Systemet skapar ett inlägg i flödet. 
 
-##AF5 - Ta bort inlägg.
+##AF7 - Ta bort inlägg.
 ###Förhandsvillkor
 1. Användaren är inloggad, se AF1.
 2. Användaren har skapat ett inlägg, se AF6.
 
 ###Huvudscenario
 1. Användaren vill ta bort skapat inlägg.
-2. Systemet frågar användaren om denna är helt säker.
-3. Användaren vill fortfarande ta bort inlägget.
+2. Systemet presenterar en ta bort knapp. 
+3. Användaren väljer ta bort.
 4. Systemet raderar inlägget från flödet.
 
-###Alternativt scenario
-3a Användaren vill inte ta bort inlägget
-  1. Systemet tar inte bort inlägget från flödet.
  
-##AF6 - Skapa viktig händelse.
+##AF8 - Skapa viktig händelse (sticky note).
 ###Förhandsvillkor
 1. Användaren är inloggad, se AF1.
+2. Användaren har skapat en grupp, se AF4.
 
 ###Huvudscenario
 1. Användaren vill skapa en viktig händelse som alla kan se. 
@@ -82,88 +121,18 @@ Det ska också gå att lägga till viktiga händelser som visas automatiskt inom
 5. Användaren ger systemet tid i antal dagar.
 6. Systemet skapar en viktig händelse.
 
-##AF7 - Ta bort viktig händelse.
+##AF9 - Ta bort viktig händelse (sticky note). 
 ###Förhandsvillkor
 1. Användaren är inloggad, se AF1.
-2. En viktig händelse finns.
+2. Användaren har skapat en viktig händelse.
 
 ###Huvudscenario
 1. Användaren vill ta bort en viktig händelse, innan tiden gått ut.
-2. Systemet frågar användaren om denna är säker.
-3. Användaren är säker.
-4. Systemet tar bort den viktiga händelsen.
+2. Systemet presenterar en X (ta bort) knapp. 
+3. Användaren väljer X (ta bort).
+4. Systemet tar bort den viktiga händelsen från alla användare.
 
-###Alternativt scenario
-3a Användaren vill inte ta bort den viktiga händelsen.
-  1. Systemet tar inte bort händelsen.
- 
-##AF8 - Ändra profilbild.
-###Förhandsvillkor
-1. Användaren är inloggad, se AF1.
 
-###Huvudscenario
-1. Användaren vill ändra sin profilbild.
-2. Systemet frågar efter ny bild.
-3. Användaren ger systemet ny bild.
-4. Systemet ändrar profilbilden. 
 
-###Alternativt scenario
-3a. Användaren ger systemet en bildfil som inte är korrekt.
-  1. Systemet presenterar ett felmeddelande.
-  2. Steg 2 i huvudscenario. 
-  
-##AF9 - Ändra profiltext.
-###Förhandsvillkor
-1. Användaren är inloggad, se AF1.
-
-###Huvudscenario
-1. Användaren vill ändra i sin profiltext.
-2. Systemet ber om ny text.
-3. Användare ger systemet ny text.
-4. Systemet ändrar i profiltexten.
-
-**-------------------- Användingsfall för senare utveckling --------------------------**
-
-##AF10 - Ändra inlägg.
-###Förhandsvillkor
-1. Användaren är inloggad, se AF1.
-2. Användaren har skapat ett inlägg, se AF6.
-
-###Huvudscenario
-1. Användaren vill ändra i skapat inlägg.
-2. Systemet ber användaren om ändringar.
-3. Användaren ändrar i inlägget.
-4. Systemet spara det ändrade inlägget.
-
-##AF11 - Kommentera inlägg.
-###Förhandsvillkor
-1. Användaren är inloggad, se AF1.
-2. Inlägg finns skapade i flödet.
-
-###Huvudscenario
-1. Användaren vill kommentera ett inlägg i flödet.
-2. Systemet ber om innehåll i kommentaren.
-3. Användaren ger systemet innehåll till kommentaren.
-4. Systemet skapar en kommentar till inlägget. 
-
-##AF12 - Ta bort kommentar.
-###Förhandsvillkor
-1. Användaren är inloggad, se AF1.
-2. Användaren har kommenterat ett inlägg i flödet.
-
-###Huvudscenario
-1. Användaren vill ta bort en skapad kommentar.
-2. Systemet tar bort kommentaren.
-
-##AF13 - Ändra personer i gruppen.
-###Förhandsvillkor
-1. Användaren är inloggad, se AF1.
-2. Användaren har rättigheter att ändra personer i gruppen.
-
-###Huvudscenario
-1. Användaren vill ändra antal personer i gruppen.
-2. Systemet frågar efter ändringar.
-3. Användaren ger systemet ändringarna.
-4. Systemet tar bort eller lägger till personer. 
 
 
