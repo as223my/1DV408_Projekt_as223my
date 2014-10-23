@@ -27,7 +27,6 @@ class GroupContentRepository extends base\Repository{
 		
 	public function addText($text, $groupId){
 		$userId = $this->sessionHelper->getId(); 
-		
 		$db = $this->connection();
 			
 		$sql = "INSERT INTO $this->textTable(" .self::$textID. "," .self::$text. ", ".self::$groupID.", ".self::$userID.") VALUES (?, ?, ?, ?)";
@@ -41,7 +40,7 @@ class GroupContentRepository extends base\Repository{
 		
 		$db = $this->connection();
 		
-		$sql ="SELECT " . self::$text . " FROM $this->textTable WHERE " . self::$groupID . " = ?";
+		$sql ="SELECT " . self::$text . ", ".self::$textID." FROM $this->textTable WHERE " . self::$groupID . " = ? ORDER BY ".self::$textID."";
 		
 		$params = array($groupId);
 		$query = $db->prepare($sql);
@@ -58,12 +57,34 @@ class GroupContentRepository extends base\Repository{
 		return $arr;
 	}
 	
+	public function getTextID(){
+		$groupId = $this->sessionHelper->getGroupId(); 
+		
+		$db = $this->connection();
+		
+		$sql ="SELECT " . self::$textID . " FROM $this->textTable WHERE " . self::$groupID . " = ? ORDER BY ".self::$textID."";
+		
+		$params = array($groupId);
+		$query = $db->prepare($sql);
+		$query->execute($params);
+			
+		$result = $query->fetchAll();
+		if(!empty($result)){
+			foreach($result as $value){
+				$arr[] = $value[self::$textID];
+			}
+		}else{
+			$arr = ""; 
+		}
+		return $arr;
+	}
+	
 	public function getUserText(){
 		$groupId = $this->sessionHelper->getGroupId(); 
 		
 		$db = $this->connection();
 		
-		$sql ="SELECT " . self::$userID . " FROM $this->textTable WHERE " . self::$groupID . " = ?";
+		$sql ="SELECT " . self::$userID . ", ".self::$textID." FROM $this->textTable WHERE " . self::$groupID . " = ? ORDER BY ".self::$textID."";
 		
 		$params = array($groupId);
 		$query = $db->prepare($sql);
@@ -81,11 +102,11 @@ class GroupContentRepository extends base\Repository{
 		return $arr;
 	}
 	
-	public function deleteText($text, $groupId, $userId){
+	public function deleteText($textID){
 		$db = $this->connection();
 		
-		$sql = "DELETE FROM $this->textTable WHERE " . self::$text . " = ? AND " . self::$groupID . "= ? AND " . self::$userID . "= ?";
-		$params = array($text, $groupId, $userId);
+		$sql = "DELETE FROM $this->textTable WHERE " . self::$textID . " = ?";
+		$params = array($textID);
 		$query = $db->prepare($sql);
 		$query->execute($params);
 	}
@@ -104,7 +125,7 @@ class GroupContentRepository extends base\Repository{
 		
 		$db = $this->connection();
 		
-		$sql ="SELECT * FROM $this->stickynoteTable WHERE " . self::$groupID . " = ?";
+		$sql ="SELECT * FROM $this->stickynoteTable WHERE " . self::$groupID . " = ? ORDER BY ".self::$stickynoteID."";
 		
 		$params = array($groupId);
 		$query = $db->prepare($sql);
@@ -132,12 +153,34 @@ class GroupContentRepository extends base\Repository{
 		return $arr;
 	}
 	
+	public function getStickyID(){
+		$groupId = $this->sessionHelper->getGroupId(); 
+		
+		$db = $this->connection();
+		
+		$sql ="SELECT " . self::$stickynoteID . " FROM $this->stickynoteTable WHERE " . self::$groupID . " = ? ORDER BY ".self::$stickynoteID."";
+		
+		$params = array($groupId);
+		$query = $db->prepare($sql);
+		$query->execute($params);
+			
+		$result = $query->fetchAll();
+		if(!empty($result)){
+			foreach($result as $value){
+				$arr[] = $value[self::$stickynoteID];
+			}
+		}else{
+			$arr = ""; 
+		}
+		return $arr;
+	}
+	
 	public function getStickyNoteUser(){
 		$groupId = $this->sessionHelper->getGroupId(); 
 		
 		$db = $this->connection();
 		
-		$sql ="SELECT " . self::$userID . " FROM $this->stickynoteTable WHERE " . self::$groupID . " = ?";
+		$sql ="SELECT " . self::$userID . " , ".self::$stickynoteID." FROM $this->stickynoteTable WHERE " . self::$groupID . " = ? ORDER BY ".self::$stickynoteID."";
 		
 		$params = array($groupId);
 		$query = $db->prepare($sql);
@@ -155,12 +198,12 @@ class GroupContentRepository extends base\Repository{
 		return $arr;
 	}
 	
-	public function deleteSticky($text, $groupId, $userId){
+	public function deleteSticky($stickynoteID){
 		
 		$db = $this->connection();
 		
-		$sql = "DELETE FROM $this->stickynoteTable WHERE " . self::$text . " = ? AND " . self::$groupID . "= ? AND " . self::$userID . "= ?";
-		$params = array($text, $groupId, $userId);
+		$sql = "DELETE FROM $this->stickynoteTable WHERE " . self::$stickynoteID . " = ?";
+		$params = array($stickynoteID);
 		$query = $db->prepare($sql);
 		$query->execute($params);
 		

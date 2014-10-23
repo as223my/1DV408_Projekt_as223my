@@ -11,6 +11,7 @@ class GroupsRepository extends base\Repository{
 	private $sessionHelper;
 	private $groupTable = "group";
 	private $groupMemberTable = "groupmember";
+	private $textTable = "text"; 
 		
 	private static $groupID = "groupID";
 	private static $groupmemberID = "groupmemberID";
@@ -97,7 +98,7 @@ class GroupsRepository extends base\Repository{
 		$id = $this->sessionHelper->getId();
 		
 		$db = $this->connection();
-		$sql = "SELECT " . self::$groupID . " FROM $this->groupMemberTable WHERE " . self::$userID . "= ?";
+		$sql = "SELECT " . self::$groupID . " FROM $this->groupMemberTable WHERE " . self::$userID . "= ? ORDER BY " . self::$groupID . "";
 		
 		$params = array($id);
 		$query = $db->prepare($sql);
@@ -168,6 +169,11 @@ class GroupsRepository extends base\Repository{
 			$params = array($groupID);
 			$query = $db->prepare($sql);
 			$query->execute($params);
+			
+			$sql = "DELETE FROM $this->textTable WHERE " . self::$groupID . " = ?";
+			$params = array($groupID);
+			$query = $db->prepare($sql);
+			$query->execute($params);	
 		}
 	}
 }

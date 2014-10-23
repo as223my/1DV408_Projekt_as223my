@@ -50,16 +50,16 @@ class GroupPageController{
 				}
 			}
 		
-		$deleteText = $this->grouppageView->deleteText(); 
+		$deleteTextID = $this->grouppageView->getTextID();
 		
-		if($deleteText !== null){
-			$this->groupContentRepository->deleteText($deleteText, $groupId, $userId);
+		if($deleteTextID !== null){
+			$this->groupContentRepository->deleteText($deleteTextID);
 		}
 		
-		$deleteSticky = $this->grouppageView->deleteSticky();
+		$deleteStickyID = $this->grouppageView->getStickyID();
 		
-		if($deleteSticky !== null){
-			$this->groupContentRepository->deleteSticky($deleteSticky, $groupId, $userId);
+		if($deleteStickyID !== null){
+			$this->groupContentRepository->deleteSticky($deleteStickyID);
 		}
 		
 		return $this->grouppageView->showGroupPage($groupName, $this->groupsRepository->getGroupsMemberName($groupId),$this->userRepository->getUserName($userId));

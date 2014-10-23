@@ -10,6 +10,7 @@ class UserPageView{
 	private $readGroupRepository;
 	
 	private static $groupname = "groupname";
+	private static $groupname2 = "groupname2";
 	private static $groupID = "groupID";
 	private static $numberOfUsers = "numberOfUsers";
 	private static $image = "image";
@@ -30,7 +31,7 @@ class UserPageView{
 	
 	public function didUserPressDeleteGroup(){
 		if(isset($_POST["deleteGroup"])){
-			return $_POST[self::$groupname];
+			return $_POST[self::$groupname2];
 		}else{
 			return null;
 		}	
@@ -72,8 +73,8 @@ class UserPageView{
 		<h3>Skapa ny grupp!</h3>
 			 <form method='post' action='?action=" .NavigationView::$actionUserPage. "'>
 				 <label for='" .self::$groupname. "'>Grupp namn</label><br />
-				 <input type='text' name='" .self::$groupname. "'  maxlength='15' value=''><br />
-				 <label for='" . self::$numberOfUsers ."'>Antal användare</label>
+				 <input type='text' name='" .self::$groupname. "' id ='" .self::$groupname. "' maxlength='15' value=''><br />
+				 <label>Antal användare</label>
 				<select name='" . self::$numberOfUsers . "'>
 	  				<option value='1'>1</option>
 	  				<option value='2'>2</option>
@@ -91,7 +92,7 @@ class UserPageView{
 		 <h3> Ta bort grupp!</h3>
 		 	 <form method='post' action='?action=" .NavigationView::$actionUserPage. "'>
 				 <label for='" .self::$groupname. "'>Gruppens namn</label><br />
-				 <input type='text' name='" .self::$groupname. "'  maxlength='15' value=''><br />
+				 <input type='text' name='" .self::$groupname2. "' id='" .self::$groupname2. "'  maxlength='15' value=''><br />
 				 <input type='submit' name='deleteGroup'  value='Ta bort grupp' class ='buttonDeleteGroup'/>
 				  <p>$deleteMessage</p>
 			 </form>

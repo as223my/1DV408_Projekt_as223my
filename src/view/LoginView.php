@@ -68,11 +68,11 @@ class LoginView{
 			 <h2>Login</h2>
 			 <form method='post' action='?action=" .NavigationView::$actionLogin. "'>
 				 <label for='" .self::$username. "'>Användarnamn</label><br />
-				 <input type='text' name='" .self::$username. "'  maxlength='50' value='$username'><br />
+				 <input type='text' name='" .self::$username. "' id='" .self::$username. "' maxlength='50' value='$username'><br />
 				 <label for='" . self::$password . "' >Lösenord</label><br />
-				 <input type='password' name='" .self::$password. "' maxlength='50' value=''>
+				 <input type='password' name='" .self::$password. "' id='" .self::$password. "' maxlength='50' value=''>
 				  <label for='" .self::$checkbox. "'>Håll mig inloggad</label>
-				 <input type='checkbox' name='" .self::$checkbox. "'class = 'checkbox'>	
+				 <input type='checkbox' name='" .self::$checkbox. "' id='" .self::$checkbox. "' class = 'checkbox'>	
 				 <input type='submit' name='login'  value='Logga in' class ='submitbutton'/>
 				  <p>$message</p>
 			 </form>
