@@ -6,7 +6,6 @@ require_once("./helpers/Session.php");
 class User{
 	
 	private $sessionMessage;
-	
 	private $tagUserName;
 	private $emptyUserName;
 	private $userName; 
@@ -15,6 +14,7 @@ class User{
 		$this->sessionMessage = new \helpers\Session(); 
 	}
 	 
+	 // Kontrollerar användarnamnet.  
 	public function checkUserName($name){
 		if($name === ""){
 			$this->emptyUserName = true;
@@ -42,7 +42,9 @@ class User{
 		}
 	}
 	
+	// Kontrollerar så att inga tags finns i användarnamnet, om det finns så sätts varibeln $tagUserName till true och tagsen tas bort från användarnamnet. 
 	public function checkForTagsUserName($name){
+		
 		if(strip_tags($name) === $name){
 			$this->userName = $name; 
 		}else{
@@ -52,6 +54,7 @@ class User{
 	}
 	
 	public function tagUserName(){
+		
 		if($this->tagUserName == true){
 			$this->sessionMessage->setMessage("Användarnamnet får inte innehålla ogiltliga tecken!");
 			return true;

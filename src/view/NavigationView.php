@@ -4,8 +4,8 @@ namespace view;
 require_once("./Settings.php");
 
 class NavigationView{
-	public static $action = "action";
 	
+	public static $action = "action";
 	public static $actionLogin = "login";
 	public static $actionLogout = "logout"; 
 	public static $actionRegistration = "registration"; 
@@ -15,23 +15,15 @@ class NavigationView{
 	
 	
 	public static function getAction(){
-		if (isset($_GET[self::$action])){
+		
+		if(isset($_GET[self::$action])){
 			return $_GET[self::$action];
-			
 		}else{
 			return self::$actionLogin;
 		}
 	}
 	
-	public static function RedirectHome(){
-		header('Location: /' . \Settings::$ROOT_PATH. '/');
-	}
-	
 	public static function RedirectToUser(){
-					 
 		header('Location: /' . \Settings::$ROOT_PATH. '/?'.self::$action.'=' .self::$actionUserPage);
 	}
-	
-	
-
 }

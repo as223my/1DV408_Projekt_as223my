@@ -10,7 +10,6 @@ require_once("./src/view/NavigationView.php");
 class NavigationController{
 	
 	public function doControll(){
-		$controller;
 		
 		try {
 			

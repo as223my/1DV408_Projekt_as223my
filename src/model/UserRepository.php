@@ -24,6 +24,7 @@ class UserRepository extends base\Repository{
 		$this->sessionHelper = new \helpers\Session(); 
 	}
 	
+	// Returnerar userID för användaren om denna finns i databasen, annars är $result tom. 
 	public function checkUser($username,$password){
 		
 		$db = $this->connection();
@@ -38,6 +39,7 @@ class UserRepository extends base\Repository{
 		return $result;
 	}
 	
+	// Kontrollerar om användarnamnet som en ny användare vill ha är ledigt eller ej.
 	public function checkUserName($username){
 		
 		$db = $this->connection();
@@ -48,14 +50,16 @@ class UserRepository extends base\Repository{
 		$query->execute($params);
 		
 		$result = $query->fetch();
+		
 		if(empty($result)){
 			return true;
 		}else{
-			$this->sessionHelper->setMessage("Användarnamnet finns redan registrerat, var vänlig välj ett annat!");
+			$this->sessionHelper->setMessage("Användarnamnet finns redan registrerat, välj ett annat!");
 			return false;
 		}
 	}
 	
+	// Kontrollerar om användare finns, när man vill skapa en ny grupp. 
 	public function checkIfUserExist($username){
 		
 		$db = $this->connection();
@@ -74,46 +78,49 @@ class UserRepository extends base\Repository{
 			foreach ($result as $key => $value){
 				if($key === self::$userID){		
     				array_push($arr,$value);
-    				}
+    			}
 			}
 			return $arr;
 		}
-		
 	}
 	
+	// Lägger till ny användare till databas.
 	public function addUser($username, $password){
 		
 		$db = $this->connection();
-		
 		$sql = "INSERT INTO $this->userTable(" .self::$userID. "," .self::$username. "," .self::$password. ") VALUES (?, ?, ?)";
-			// Byt ut md5 mot hasssched?? (Funkar ej med aptana)
-			$params = array("",$username, md5($password));
-			$query = $db->prepare($sql);
-			$query->execute($params);	
+	
+		$params = array("",$username, md5($password));
+		$query = $db->prepare($sql);
+		$query->execute($params);	
 			
-			$this->sessionHelper->setMessage("Du har nu registrerats! Välkommen $username ");
+		$this->sessionHelper->setMessage("Du har nu registrerats! Välkommen $username ");
 	}
 	
+	// Lägger till användare till grupp ner denna skapas. 
 	public function addUserToGroup($userID, $groupID, $groupname){
+		
 		$db = $this->connection();
-			
-		$sql1 = "INSERT INTO $this->groupMemberTable(" .self::$groupMemberID. "," .self::$groupID. "," .self::$userID. ") VALUES (?, ?, ?)";
-		$params1 = array("",$groupID, $userID[0]);
-		$query1 = $db->prepare($sql1);
-		$query1->execute($params1);	
+		$sql = "INSERT INTO $this->groupMemberTable(" .self::$groupMemberID. "," .self::$groupID. "," .self::$userID. ") VALUES (?, ?, ?)";
+		
+		$params = array("",$groupID, $userID[0]);
+		$query = $db->prepare($sql);
+		$query->execute($params);	
 
 		$this->sessionHelper->setMessage("Gruppen $groupname är skapad!");
 	}
 	
+	// Returnerar användarnamn utifrån userID.
 	public function getUserName($userID){
+		
 			$db = $this->connection();
 			$sql = "SELECT " . self::$username . " FROM $this->userTable WHERE " . self::$userID . " = ? ";
+			
 			$params = array($userID);
 			$query = $db->prepare($sql);
 			$query->execute($params);
 			$result = $query->fetch();
+			
 			return $result[self::$username];
-		
 	}	
-	
 }

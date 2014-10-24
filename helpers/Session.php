@@ -14,8 +14,11 @@ class Session{
       	$_SESSION[self::$sessionMessage] = $string;
     }
  
+ 	// Om ett meddelande finns så retureras detta, därefter tas det bort.
     public function getMessage(){
+    	
       if(isset($_SESSION[self::$sessionMessage])){
+      	
         $message = $_SESSION[self::$sessionMessage];  
         unset($_SESSION[self::$sessionMessage]);	
 		
@@ -30,7 +33,9 @@ class Session{
 	}
 	
 	public function getDeleteMessage(){
+		
       if(isset($_SESSION[self::$sessionDeleteMessage])){
+      
         $deleteMessage = $_SESSION[self::$sessionDeleteMessage];  
         unset($_SESSION[self::$sessionDeleteMessage]);	
 		

@@ -11,7 +11,6 @@ class RegistrationView{
 	private static $password = "password";
 	private static $password2 = "password2";
 	
-	
 	public function __construct(){
 		$this->sessionHelper = new \helpers\Session();
 	}
@@ -24,15 +23,17 @@ class RegistrationView{
 		}	
 	}
 	
+	// Visar registreringsformulär, $name är ifyllt om användarnamnet är godkänt men ej lösenordet. 
 	public function showRegistrationForm($name){
-	$message = $this->sessionHelper->getMessage();
+		
+		$message = $this->sessionHelper->getMessage();
 		
 		$html = "
 		<div id='RegForm'>
-		 <a href='?action=" .NavigationView::$actionLogin. "'>Tillbaka</a>
-			 <h1>FamilyBook</h1>
-			 <h2>Registrera ny användare</h2>
-			 <form method='post' action='?action=" .NavigationView::$actionRegistration. "'>
+		 	<a href='?action=" .NavigationView::$actionLogin. "'>Tillbaka</a>
+			<h1>FamilyBook</h1>
+			<h2>Registrera ny användare</h2>
+			<form method='post' action='?action=" .NavigationView::$actionRegistration. "'>
 				 <label for='" .self::$username. "'>Användarnamn</label><br />
 				 <input type='text' name='" .self::$username. "' id='" .self::$username. "' maxlength='50' value='$name'><br />
 				 <label for='" . self::$password . "' >Lösenord</label><br />
@@ -40,7 +41,7 @@ class RegistrationView{
 				 <label for='" . self::$password2 . "' >Upprepa lösenord</label><br />
 				 <input type='password' name='" .self::$password2. "' id='" .self::$password2. "' placeholder = '******' maxlength='50' value=''><br />
 				 <input type='submit' name='regUser'  value='Registrera' class ='regbutton'/>
-				  <p>$message</p>
+				 <p>$message</p>
 			 </form>
 		 </div>";
 		

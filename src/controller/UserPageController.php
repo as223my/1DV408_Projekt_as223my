@@ -21,24 +21,28 @@ class UserPageController{
 		$this->session = new \helpers\Session();
 	
 	}
-		
+	
+	/*
+	 * Hämtar de grupper som finns registrerat hos användaren. 
+	 * Kontrollerar om skapa eller radera grupp har valts. 
+	 * Returnerar olika vyer beroende av resultat. 
+	 */
 	public function userPage(){
 		
 		$getGroups = $this->groupRepository->getGroups();
 		$deleteGroup = $this->userpageView->didUserPressDeleteGroup();
-		
+	
 		if($deleteGroup !== null){
+			
 			$groupID = $this->groupRepository->findGroupId($deleteGroup);
 			$group = $this->groupRepository->checkIfMemberHasGroup($groupID[0]);
 			
 			if(empty($groupID) || empty($group)){
 				$this->session->setMessageDelete("Det finns ingen grupp med det namnet!");
 			}else{
-				// Delete group from groupMember, if group has not a member delete group.
 				$this->groupRepository->deleteGroupFromMember($groupID[0]); 
 				$this->session->setMessageDelete("Gruppen $deleteGroup är borttagen!");
 			}
-		
 		}
 
 		$regGroupInput = $this->userpageView->didUserPressRegGroup();
@@ -53,6 +57,11 @@ class UserPageController{
 		}
 	}
 	
+	/*
+	 * Om skapa ny grupp har valts, kontrolleras de valda användarna. 
+	 * Användarna måste finnas registrerade i databasen och man kan inte skapa en grupp med sig själv som medlem. 
+	 * Om allt stämmer skapas en ny grupp och de valda användarna läggs till gruppen, annars så sätts felmeddelande och användaren får en ny chans att göra rätt.
+	 */
 	public function userPageSelect(){
 	
 		$getGroups  = $this->groupRepository->getGroups();
@@ -67,11 +76,14 @@ class UserPageController{
 			$regUsers = $this->userpageView-> didUserPressRegUsers($number);
 	
 			foreach($regUsers as $username){
+				
 				if($username == $this->session->getName()){
 					$this->session->setMessage("Du kan inte bilda grupp med dig själv!");
 					return $this->userpageView->showSelectUser($group,$number, array());
 				}
+				
 				$result = $this->userRepository->checkIfUserExist($username);
+				
 				if(!empty($result)){
 					array_push($arrUserID,$result);
 					array_push($arrUserName,$username);
@@ -97,5 +109,4 @@ class UserPageController{
 			return $this->userpageView->showUserPage($getGroups);	
 		}
 	}
-
 }

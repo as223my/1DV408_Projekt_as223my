@@ -4,7 +4,6 @@ namespace controller;
 
 require_once("./src/view/LoginView.php");
 require_once("./src/model/Login.php");
-require_once("./src/view/LoginView.php");
 
 class LoginController{
 	
@@ -12,7 +11,6 @@ class LoginController{
 	private $loginModel;
 	
 	public function __construct(){
-		
 		$this->loginView = new \view\LoginView();
 		$this->loginModel = new \model\Login();
 	}
@@ -23,13 +21,17 @@ class LoginController{
 		return $this->loginView->showLoginForm("");
 	}
 	
+	/*
+	 *  Kontrollerar om man är inloggad (returnar då true).
+	 * 	Om felaktiga/manipulerade uppgifter finns i kakorna eller om session stöld förekommigt, loggas man ut. 
+	 */
 	public function checkLogin(){
-		// Ser till så att man som inloggad är skyddad mot sessionstöld i en annan typ av webbläsare. 
+	
 		if($this->loginModel->session($this->loginView->getHttpUserAgent()) === false){
 			$this->loginModelmodel->sessionDestroy();
 			return $this->loginView->showLoginForm(""); 
 		}
-		// kolla om inloggad via session och kakor 
+		 
 		if($this->loginModel->checkLoggedInSession()){
 			return true; 
 		}
@@ -52,29 +54,32 @@ class LoginController{
 		return $this->loginView->showLoginForm(""); 
 	}
 	
+	/*
+	 * Om man redan är inloggad skickas man vidare till sin användarsida (userpage),
+	 * om inte så kontrolleras inloggningsformuläret med dess uppgifter. 
+	 */
 	public function loginForm(){
 
 		if($this->checkLogin() === true){
 			\view\NavigationView::RedirectToUser();
 		}else{
+			
+			$loginformInput = $this->loginView->didUserPressLogin();
+			
+			if($loginformInput === null){
+				return $this->loginView->showLoginForm("");
+			}
+			
+			$username = $loginformInput[0];
+			$password = $loginformInput[1]; 
 		
-		$loginformInput = $this->loginView->didUserPressLogin();
+			if($this->loginModel->checkUserCredentialsLogin($username, $password)){
+					$this->loginView->checkbox();
 		
-		if($loginformInput === null){
-			return $this->loginView->showLoginForm("");
-		}
-		
-		$username = $loginformInput[0];
-		$password = $loginformInput[1]; 
-	
-		
-		if($this->loginModel->checkUserCredentialsLogin($username, $password)){
-				$this->loginView->checkbox();
-	
-			\view\NavigationView::RedirectToUser();
-		}else{
-			return $this->loginView->showLoginForm($username);
-		}
+				\view\NavigationView::RedirectToUser();
+			}else{	
+				return $this->loginView->showLoginForm($username);
+			}
 		}
 	}
 
