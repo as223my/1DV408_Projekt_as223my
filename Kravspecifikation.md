@@ -90,10 +90,10 @@ När man är inloggad har man i sin profil möjlighet att skapa och ta bort grup
 2. Användaren har skapat en grupp, se AF4.
 
 ###Huvudscenario
-1. Användaren vill skapa ett inlägg i vald grupp.
-2. Systemet ber om innehåll till inlägget.
-3. Användaren ger systemet innehåll.
-4. Systemet skapar ett inlägg i flödet. 
+1. Användaren vill välja en grupp.
+2. Systemet presenterar gruppen.
+3. Användaren väljer gruppen.
+4. Systemet visar gruppsidan med dess medlemmar och innehåll. 
 
 ##AF7 - Skapa inlägg.
 ###Förhandsvillkor
