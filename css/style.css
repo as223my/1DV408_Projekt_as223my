@@ -42,7 +42,6 @@ body{
 	font-family: 'Dancing Script';
 }
 
-
 #newGroups{
 	margin-left:400px;
 	margin-right:50px;
@@ -53,8 +52,7 @@ body{
 	font-family: 'Lora';
  	font-size:110%;
 	color:#6e252c;
-	text-align: center;
-   
+	text-align: center;  
 }
 
 .groupDiv{
@@ -81,7 +79,6 @@ body{
 	background-color:#cfe7cf;
 	color:black;
 }
-
 
 #head h1{
 	margin-top:0;
@@ -186,7 +183,6 @@ body{
 
 .textMessage1{
 	background-color:#fdfdfd;
-	
 }
 
 .textGroup{
@@ -242,8 +238,7 @@ textarea{
 	font-size:100%;
 	width:100px;
 	height:30px;
-	color:#9E363F;
-	
+	color:#9E363F;	
 }
 
 #noteDiv{
@@ -255,7 +250,6 @@ textarea{
 	border-bottom: 4px solid #595959;
 	border-right: 4px solid #8e8e8e;
 	overflow:auto;
-
 }
 
 .deleteSticky{
@@ -276,7 +270,6 @@ textarea{
 	border-top: 2px solid #8e8e8e;
 	border-bottom: 4px solid #595959;
 	border-left: 2px solid #595959;
-	
 }
 
 
@@ -347,12 +340,10 @@ h2{
 	font-family: 'Dancing Script';
 }
 
-
 input{
 	margin-left:5%;
 	height:20px;
 	width:200px;
-	
 }
 
 label{
@@ -373,14 +364,17 @@ label{
 	font-size:120%;
 	color:#9E363F;
 }
+
 .buttonsaveText{
 	margin-left:60px;
 	margin-top:10px;
 }
+
 .regbutton{
 	width:150px;
 	margin-top:20px;
 }
+
 .submitbuttonCreateGroup, .buttonDeleteGroup{
 		width:150px;
 	margin-top:20px;
@@ -390,6 +384,7 @@ label{
 		width:250px;
 	margin-top:20px;
 }
+
 .submitbutton:hover, .regbutton:hover, .sendButton:hover, .submitbuttonCreateGroup:hover, .submitbuttonCreateGroup1:hover, .buttonDeleteGroup:hover{
 	color:black;
 }
