@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Värd: 127.0.0.1
--- Tid vid skapande: 25 okt 2014 kl 16:18
+-- Tid vid skapande: 25 okt 2014 kl 16:30
 -- Serverversion: 5.6.15-log
 -- PHP-version: 5.4.24
 
@@ -30,14 +30,15 @@ CREATE TABLE IF NOT EXISTS `group` (
   `groupID` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(15) NOT NULL,
   PRIMARY KEY (`groupID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=75 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=77 ;
 
 --
 -- Dumpning av Data i tabell `group`
 --
 
 INSERT INTO `group` (`groupID`, `name`) VALUES
-(74, 'sds');
+(76, 'Mias grupp'),
+(75, 'VÃ¤nner');
 
 -- --------------------------------------------------------
 
@@ -50,18 +51,18 @@ CREATE TABLE IF NOT EXISTS `groupmember` (
   `groupID` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
   PRIMARY KEY (`groupmemberID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=78 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=83 ;
 
 --
 -- Dumpning av Data i tabell `groupmember`
 --
 
 INSERT INTO `groupmember` (`groupmemberID`, `groupID`, `userID`) VALUES
-(77, 74, 37),
-(74, 73, 38),
-(76, 74, 38),
-(72, 72, 38),
-(70, 71, 38);
+(78, 75, 37),
+(80, 75, 39),
+(79, 75, 38),
+(81, 76, 38),
+(82, 76, 39);
 
 -- --------------------------------------------------------
 
@@ -76,16 +77,14 @@ CREATE TABLE IF NOT EXISTS `stickynote` (
   `groupID` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
   PRIMARY KEY (`stickynoteID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=67 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=68 ;
 
 --
 -- Dumpning av Data i tabell `stickynote`
 --
 
 INSERT INTO `stickynote` (`stickynoteID`, `text`, `time`, `groupID`, `userID`) VALUES
-(64, 'egfrghf', 1414182112, 72, 38),
-(57, 'sd', 1414179500, 71, 38),
-(62, 'vdsdsgdsggdsgds', 1414182099, 72, 38);
+(67, 'Tenta pÃ¥ fredag!', 1415111273, 75, 39);
 
 -- --------------------------------------------------------
 
@@ -99,21 +98,19 @@ CREATE TABLE IF NOT EXISTS `text` (
   `groupID` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
   PRIMARY KEY (`textID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=380 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=386 ;
 
 --
 -- Dumpning av Data i tabell `text`
 --
 
 INSERT INTO `text` (`textID`, `text`, `groupID`, `userID`) VALUES
-(297, 'dfvsdgshndgs', 72, 38),
-(299, 'gdsegsgs<br>\r\n<br>\r\nagdeg<br>\r\nsd<br>\r\ng<br>\r\n', 72, 37),
-(295, 'saffsaa', 72, 38),
-(288, 'ssd', 72, 37),
-(291, 'hej', 72, 37),
-(377, 'gdfs fdgbdg', 74, 37),
-(378, 'sfdsf<br>\r\ndfasfsdf<br>\r\nfdsaf', 74, 37),
-(379, 'jkh', 74, 37);
+(380, 'Hej allihopa! <br>\r\n<br>\r\n:) ', 75, 39),
+(381, 'Hej test! ', 75, 37),
+(382, 'Mia?? ', 75, 37),
+(383, 'HEJ! ', 75, 38),
+(384, 'Hejsan! ', 76, 39),
+(385, 'Tjena!! ', 76, 38);
 
 -- --------------------------------------------------------
 
@@ -126,13 +123,14 @@ CREATE TABLE IF NOT EXISTS `user` (
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   PRIMARY KEY (`userID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=39 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
 
 --
 -- Dumpning av Data i tabell `user`
 --
 
 INSERT INTO `user` (`userID`, `username`, `password`) VALUES
+(39, 'test', '098f6bcd4621d373cade4e832627b4f6'),
 (38, 'Mia', 'e10adc3949ba59abbe56e057f20f883e'),
 (37, 'Annie', '202cb962ac59075b964b07152d234b70');
 
