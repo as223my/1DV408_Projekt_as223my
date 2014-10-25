@@ -84,8 +84,7 @@ När man är inloggad har man i sin profil möjlighet att skapa och ta bort grup
   2. Användaren väljer därefter ett nytt gruppnamn.
   3. Steg 4 i huvudscenario. 
   
-
-##AF6 - Skapa inlägg.
+##AF6 - Välj grupp.
 ###Förhandsvillkor
 1. Användaren är inloggad, se AF1.
 2. Användaren har skapat en grupp, se AF4.
@@ -96,10 +95,23 @@ När man är inloggad har man i sin profil möjlighet att skapa och ta bort grup
 3. Användaren ger systemet innehåll.
 4. Systemet skapar ett inlägg i flödet. 
 
-##AF7 - Ta bort inlägg.
+##AF7 - Skapa inlägg.
+###Förhandsvillkor
+1. Användaren är inloggad, se AF1.
+2. Användaren har skapat en grupp, se AF4.
+3. Användaren har valt en grupp, se AF6.
+
+###Huvudscenario
+1. Användaren vill skapa ett inlägg i vald grupp.
+2. Systemet ber om innehåll till inlägget.
+3. Användaren ger systemet innehåll.
+4. Systemet skapar ett inlägg i flödet. 
+
+##AF8 - Ta bort inlägg.
 ###Förhandsvillkor
 1. Användaren är inloggad, se AF1.
 2. Användaren har skapat ett inlägg, se AF6.
+3. Användaren har valt en grupp, se AF6.
 
 ###Huvudscenario
 1. Användaren vill ta bort skapat inlägg.
@@ -108,10 +120,11 @@ När man är inloggad har man i sin profil möjlighet att skapa och ta bort grup
 4. Systemet raderar inlägget från flödet.
 
  
-##AF8 - Skapa viktig händelse (sticky note).
+##AF9 - Skapa viktig händelse (sticky note).
 ###Förhandsvillkor
 1. Användaren är inloggad, se AF1.
 2. Användaren har skapat en grupp, se AF4.
+3. Användaren har valt en grupp, se AF6.
 
 ###Huvudscenario
 1. Användaren vill skapa en viktig händelse som alla kan se. 
@@ -121,10 +134,11 @@ När man är inloggad har man i sin profil möjlighet att skapa och ta bort grup
 5. Användaren ger systemet tid i antal dagar.
 6. Systemet skapar en viktig händelse.
 
-##AF9 - Ta bort viktig händelse (sticky note). 
+##AF10 - Ta bort viktig händelse (sticky note). 
 ###Förhandsvillkor
 1. Användaren är inloggad, se AF1.
-2. Användaren har skapat en viktig händelse.
+3. Användaren har valt en grupp, se AF6.
+2. Användaren har skapat en viktig händelse, se AF9.
 
 ###Huvudscenario
 1. Användaren vill ta bort en viktig händelse, innan tiden gått ut.
